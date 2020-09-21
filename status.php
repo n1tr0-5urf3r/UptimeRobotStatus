@@ -136,7 +136,7 @@
 
             foreach ($uptimes_7_days as $day) {
                 $bulletClass = checkColor($day);
-                echo "<td class='daily "  . $bulletClass . "'>" . round($day, 2) . "%</td>";
+                echo "<td><div class='daily " . $bulletClass . "'>" . round($day, 2) . "%</div></td>";
             }
             echo "</tr>";
         }
