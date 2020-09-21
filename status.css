@@ -2,6 +2,7 @@ body {
     max-width: 1500px;
     margin: auto;
     background-color: #272727;
+    white-space: nowrap;
   }
 
 p, td, th, h2, h3 {

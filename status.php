@@ -14,7 +14,6 @@
     <?php
     try {
         // API URL
-
         $url = 'https://api.uptimerobot.com/v2/getMonitors';
         // Create a new cURL resource
         $ch = curl_init($url);
@@ -27,10 +26,8 @@
         for ($i = 0; $i < 7; $i++) {
             if ($i == 6) {
                 $last_7_days = $last_7_days . date(time() - 60 * 60 * 24 * ($i+1)) . "_" . date(time() - 60 * 60 * 24 * ($i));
-            } elseif ($i==0) {
-                $last_7_days = $last_7_days . date(time() - 60 * 60 * 24 * (1)) . "_" . date(time() - 60 * 60 * 24 * $i) . "-";
-            }else {
-                $last_7_days = $last_7_days . date(time() - 60 * 60 * 24 * ($i+1)) . "_" . date(time() - 60 * 60 * 24 * ($i)) . "-";
+            } else {
+                $last_7_days = $last_7_days . date(time() - 60 * 60 * 24 * ($i+1)) . "_" . date(time() - 60 * 60 * 24 * $i) . "-";
             }
         }
 
