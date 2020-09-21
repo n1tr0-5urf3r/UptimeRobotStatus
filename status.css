@@ -1,0 +1,70 @@
+body {
+    max-width: 1500px;
+    margin: auto;
+    background-color: #272727;
+  }
+
+p, td, th, h2, h3 {
+    color: rgb(0,255,0);
+    font-family: Consolas;
+    text-align: left;
+}
+
+p {
+    font-size: 17px;;
+}
+
+#leftbox { 
+    float:left;  
+    width:40%; 
+    height:280px; 
+} 
+#middlebox{ 
+    float:left;  
+    width:20%; 
+    height:280px; 
+} 
+#rightbox{ 
+    float:right; 
+    width:40%; 
+    height:280px; 
+} 
+
+hr {
+    border-top: 3px solid rgb(0, 255, 0);
+}
+
+td {
+    font-size: 18px;
+    padding-right: 40px;
+}
+
+th {
+    padding-right: 50px;
+    font-size: 24px;
+}
+
+#sums td {
+    padding-right: 20px;
+}
+
+.bullet {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.success {
+    color: #fff;
+    background-color: #80BA27;
+}
+.warning {
+    color: #fff;
+    background-color: orange;
+}
+.error {
+    color: #fff;
+    background-color:red;
+
+}
