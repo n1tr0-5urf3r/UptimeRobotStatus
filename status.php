@@ -83,6 +83,7 @@
 
         echo "<h2>Monitoring Status</h2>";
         echo "<hr>";
+        echo "<div id='monitoring'>";
         echo "<table class='status'>";
         echo "<tr><th></th><th>Last 7 days</th><th>Avg Response Time</th><th>Service</th><th></th><th>Port</th></tr>";
         echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td>";
@@ -142,8 +143,8 @@
         }
         echo "<tr></tr>";
         echo "</table><br>";
+        echo "</div>";
         echo "<hr>";
-
 
         echo "<div id=leftbox><h3>Overall Uptime</h3>";
         echo "<table id='sums'>";
