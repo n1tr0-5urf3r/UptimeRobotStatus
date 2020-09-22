@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="60">
     <title>Uptime Status</title>
     <link rel="stylesheet" href="status.css">
     <link rel="icon" type="image/png" href="img/logo.png">
@@ -167,6 +168,7 @@
         echo "<tr><td><span class='bullet error'></span></td><td>Down</td><td>" . $down . "</td></tr>";
         echo "<tr><td><span class='bullet warning'></span></td><td>Paused</td><td>" . $paused . "</td></tr>";
         echo "</table>";
+        echo "<p id='refresh'></p>";
         echo "</div>";
 
         echo "<div id=rightbox>";
@@ -187,6 +189,22 @@
         ?>
 
     </div>
+
+    <script>
+        var field = document.getElementById("refresh");
+        var counter = 60;
+
+        function countDown() {
+            setTimeout("countDown()", 1000);
+            field.innerHTML = "Page refreshes in " + counter + " seconds.";
+            counter = counter - 1;
+            if (counter < 0) {
+                counter = 0;
+            }
+        }
+
+        countDown();
+    </script>
 </body>
 
 </html>
