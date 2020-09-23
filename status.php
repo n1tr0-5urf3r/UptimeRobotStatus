@@ -13,17 +13,9 @@
 
 <body>
     <div id="content">
-        <a href="https://me.ihlecloud.de"><img id="logo" src="img/logo.png" alt="ihlecloud.de"></a><br>
+        <img id="logo" src="img/logo.png" alt="ihlecloud.de"><br>
         <?php
-        $monitors = callApi();
 
-        $status = array(
-            "0" => "paused",
-            "1" => "not checked yet",
-            "2" => "up",
-            "8" => "seems down",
-            "9" => "down"
-        );
         $uptimes_strings = array("(Last 24 hours)", "(Last 7 days)", "(Last 30 days)", "(All time)");
         $uptimes_sum = array(0, 0, 0, 0);
         $up = 0;
@@ -31,9 +23,8 @@
         $paused = 0;
         $all_logs = array();
 
-
+        $monitors = callApi();
         createTable($monitors);
-        echo "<hr>";
         createUptimesSummaryTable($uptimes_sum, $uptimes_strings, $monitors);
         createQuickStatsTable($up, $down, $paused);
         createLastDownTimeTable($all_logs);
@@ -159,6 +150,7 @@
             echo "<tr></tr>";
             echo "</table><br>";
             echo "</div>";
+            echo "<hr>";
         }
 
         function getLast7Days()
