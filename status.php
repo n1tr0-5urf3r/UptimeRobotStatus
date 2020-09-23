@@ -206,9 +206,54 @@
 
         function createLastDownTimeTable($logs)
         {
+
+            function secondsToString($seconds)
+            {
+                $minutes = 0;
+                $hours = 0;
+                $days = 0;
+                # ugly af
+                if ($seconds >= 60) {
+                    $minutes = floor($seconds / 60);
+                    $seconds = $seconds - $minutes * 60;
+                }
+                if ($minutes >= 60) {
+                    $hours = floor($minutes / 60);
+                    $minutes = $minutes - $hours * 60;
+                }
+                if ($hours >= 24) {
+                    $days = floor($hours / 24);
+                    $hours = $hours - $days * 24;
+                }
+                return array($days, $hours, $minutes, $seconds);
+            }
+
+            $maxDownTime = 0;
+            $downString = "";
+            # Probably will affect performance with big logs?
             foreach ($logs as $log) {
+                foreach ($log as $logentry) {
+                    if ($logentry["type"] == "1") {
+                        if ($logentry["datetime"] > $maxDownTime) {
+                            $maxDownTime = $logentry["datetime"];
+                            $duration = $logentry["duration"];
+                        }
+                    }
+                }
+            }
+            if ($maxDownTime == 0) {
+                $downString = "No downtime recorded!";
+            } else {
+                $seconds = time() - $maxDownTime;
+                $timeArr = secondsToString($seconds);
+                $durationArr = secondsToString($duration);
+
+                $dateString =  date("d.m.Y H:i:s", substr($maxDownTime, 0, 10));
+                $downString = "The latest downtime was at <span id='latestDowntime'>" . $dateString . "</span> which was " . $timeArr[0] . " days, " . $timeArr[1] . " hours and " . $timeArr[2] . " minutes ago and lasted " . $durationArr[0] . " days, " . $durationArr[1] . " hours, " . $durationArr[2] . " minutes and " . $durationArr[3] . " seconds.";
             }
             echo "<div id=middlebox>";
+            echo "<h3>Latest Downtime</h3>";
+            echo "<p>" . $downString . "</p>";
             echo "</div>";
         }
 
