@@ -25,9 +25,11 @@
 
         $monitors = callApi();
         createTable($monitors);
+        echo "<div id='overview'>";
         createUptimesSummaryTable($uptimes_sum, $uptimes_strings, $monitors);
         createQuickStatsTable($up, $down, $paused);
         createLastDownTimeTable($all_logs);
+        echo "</div>";
 
 
         function callApi()
@@ -117,7 +119,7 @@
                 echo "<tr>";
                 echo "<td><span class='bullet " . $bulletClass . "'></span></td>";
                 echo "<td>" . $uptime_7 . "%</td>";
-                echo "<td>" . $monitor["average_response_time"] . "ms </td>";
+                echo "<td class='desktop responseTime'>" . $monitor["average_response_time"] . "ms </td>";
                 echo "<td>" . $monitor["friendly_name"] . "</td>";
                 echo "<td>" . $types[$monitor["type"]] . "</td>";
                 echo "<td>" . $monitor["port"] . "</td>";
@@ -125,7 +127,7 @@
 
                 foreach ($uptimes_7_days as $day) {
                     $bulletClass = checkColor($day);
-                    echo "<td><div class='daily " . $bulletClass . "'>" . round($day, 2) . "%</div></td>";
+                    echo "<td class='daily desktop'><div class='" . $bulletClass . "'>" . round($day, 2) . "%</div></td>";
                 }
                 echo "</tr>";
             }
@@ -137,11 +139,11 @@
             echo "<hr>";
             echo "<div id='monitoring'>";
             echo "<table class='status'>";
-            echo "<tr><th></th><th>Last 7 days</th><th>Avg Response Time</th><th>Service</th><th></th><th>Port</th></tr>";
+            echo "<tr><th></th><th>Last 7 days</th><th class='desktop responseTime'>Avg Response Time</th><th>Service</th><th></th><th>Port</th></tr>";
             echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td>";
             for ($i = 0; $i < 7; $i++) {
                 $dateString = date("d. M", time() - 60 * 60 * 24 * $i);
-                echo "<td>" . $dateString . "</td>";
+                echo "<td><div class='daily desktop'>" . $dateString . "</div></td>";
             }
             echo "</tr>";
 
